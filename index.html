@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>DESTINY BOT</title>
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px 14px 30px;
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+            background: #f5f7fa;
+            color: #111827;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 22px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .header p {
+            margin: 7px 0 0;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .section-title {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .service {
+            border: 0;
+            background: white;
+            border-radius: 16px;
+            padding: 18px 10px;
+            min-height: 115px;
+            box-shadow:
+                0 2px 10px rgba(0,0,0,0.06);
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            cursor: pointer;
+            transition: transform 0.12s;
+        }
+
+        .service:active {
+            transform: scale(0.96);
+        }
+
+        .logo {
+            width: 54px;
+            height: 54px;
+            border-radius: 14px;
+            object-fit: contain;
+            margin-bottom: 9px;
+        }
+
+        .service-name {
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .country-screen {
+            display: none;
+        }
+
+        .country-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .country {
+            border: 0;
+            background: white;
+            border-radius: 14px;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: 700;
+            text-align: left;
+            box-shadow:
+                0 2px 9px rgba(0,0,0,0.06);
+        }
+
+        .back {
+            margin-top: 18px;
+            width: 100%;
+            border: 0;
+            border-radius: 13px;
+            padding: 14px;
+            font-size: 15px;
+            font-weight: 700;
+            background: #e5e7eb;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="serviceScreen">
+
+        <div class="header">
+            <h1>DESTINY BOT</h1>
+            <p>Select a service</p>
+        </div>
+
+        <div class="section-title">
+            Available Services
+        </div>
+
+        <div class="services">
+
+            <button
+                class="service"
+                onclick="selectService('Telegram')"
+            >
+                <img
+                    class="logo"
+                    src="https://cdn.simpleicons.org/telegram"
+                    alt="Telegram"
+                >
+                <span class="service-name">
+                    Telegram
+                </span>
+            </button>
+
+
+            <button
+                class="service"
+                onclick="selectService('WhatsApp')"
+            >
+                <img
+                    class="logo"
+                    src="https://cdn.simpleicons.org/whatsapp"
+                    alt="WhatsApp"
+                >
+                <span class="service-name">
+                    WhatsApp
+                </span>
+            </button>
+
+
+            <button
+                class="service"
+                onclick="selectService('Facebook')"
+            >
+                <img
+                    class="logo"
+                    src="https://cdn.simpleicons.org/facebook"
+                    alt="Facebook"
+                >
+                <span class="service-name">
+                    Facebook
+                </span>
+            </button>
+
+
+            <button
+                class="service"
+                onclick="selectService('Instagram')"
+            >
+                <img
+                    class="logo"
+                    src="https://cdn.simpleicons.org/instagram"
+                    alt="Instagram"
+                >
+                <span class="service-name">
+                    Instagram
+                </span>
+            </button>
+
+
+            <button
+                class="service"
+                onclick="selectService('Discord')"
+            >
+                <img
+                    class="logo"
+                    src="https://cdn.simpleicons.org/discord"
+                    alt="Discord"
+                >
+                <span class="service-name">
+                    Discord
+                </span>
+            </button>
+
+
+            <button
+                class="service"
+                onclick="selectService('Apple')"
+            >
+                <img
+                    class="logo"
+                    src="https://cdn.simpleicons.org/apple"
+                    alt="Apple"
+                >
+                <span class="service-name">
+                    Apple
+                </span>
+            </button>
+
+
+            <button
+                class="service"
+                onclick="selectService('TikTok')"
+            >
+                <img
+                    class="logo"
+                    src="https://cdn.simpleicons.org/tiktok"
+                    alt="TikTok"
+                >
+                <span class="service-name">
+                    TikTok
+                </span>
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div id="countryScreen" class="country-screen">
+
+        <div class="header">
+            <h1 id="selectedService">
+                DESTINY BOT
+            </h1>
+
+            <p>
+                Select a country
+            </p>
+        </div>
+
+        <div class="country-list">
+
+            <button
+                class="country"
+                onclick="selectCountry('🇳🇬 Nigeria')"
+            >
+                🇳🇬 Nigeria
+            </button>
+
+            <button
+                class="country"
+                onclick="selectCountry('🇺🇸 USA')"
+            >
+                🇺🇸 USA
+            </button>
+
+            <button
+                class="country"
+                onclick="selectCountry('🇬🇧 United Kingdom')"
+            >
+                🇬🇧 United Kingdom
+            </button>
+
+            <button
+                class="country"
+                onclick="selectCountry('🇨🇦 Canada')"
+            >
+                🇨🇦 Canada
+            </button>
+
+            <button
+                class="country"
+                onclick="selectCountry('🇮🇳 India')"
+            >
+                🇮🇳 India
+            </button>
+
+            <button
+                class="country"
+                onclick="selectCountry('🇿🇦 South Africa')"
+            >
+                🇿🇦 South Africa
+            </button>
+
+            <button
+                class="country"
+                onclick="selectCountry('🇦🇪 UAE')"
+            >
+                🇦🇪 UAE
+            </button>
+
+        </div>
+
+        <button
+            class="back"
+            onclick="goBack()"
+        >
+            ◀️ Back
+        </button>
+
+    </div>
+
+
+    <script>
+
+        const tg =
+            window.Telegram &&
+            window.Telegram.WebApp;
+
+        if (tg) {
+            tg.ready();
+            tg.expand();
+        }
+
+
+        let selectedService = "";
+
+
+        function selectService(service) {
+
+            selectedService = service;
+
+            document
+                .getElementById("serviceScreen")
+                .style.display = "none";
+
+            document
+                .getElementById("countryScreen")
+                .style.display = "block";
+
+            document
+                .getElementById("selectedService")
+                .textContent = service;
+        }
+
+
+        function goBack() {
+
+            document
+                .getElementById("countryScreen")
+                .style.display = "none";
+
+            document
+                .getElementById("serviceScreen")
+                .style.display = "block";
+        }
+
+
+        function selectCountry(country) {
+
+            if (tg) {
+
+                tg.showPopup({
+                    title: "DESTINY BOT",
+                    message:
+                        selectedService +
+                        " • " +
+                        country +
+                        "\n\n" +
+                        "This order panel is ready. " +
+                        "A legitimate number provider " +
+                        "must be connected before a " +
+                        "real number can be supplied.",
+                    buttons: [
+                        {
+                            id: "ok",
+                            type: "ok",
+                            text: "OK"
+                        }
+                    ]
+                });
+
+            } else {
+
+                alert(
+                    selectedService +
+                    " • " +
+                    country
+                );
+
+            }
+        }
+
+    </script>
+
+</body>
+</html>
